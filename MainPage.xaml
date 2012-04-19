@@ -23,20 +23,13 @@
 
         <!--TitlePanel содержит имя приложения и заголовок страницы-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Ну вот как бы карта для приложения на курсач" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Карта" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="Определение текущего местоположения" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Меню" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel — поместите здесь дополнительное содержимое-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <map:Map Name="MyMap" CredentialsProvider="ApTr8-LSVQvkI_-ARkF0EBcFQu_4nMG_hKC0AAA4d6W4rOhvfViYeJ3JO69Er2qz">
-                <Button Name="ZoomIn" Content="+" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="60" Margin="-100,0,0,-5" Click="ZoomIn_Click" FontWeight="Bold" Padding="0,-9,0,0"/>
-
-                <Button Name="ZoomOut" Content="-" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="60" Margin="100,0,0,-5" Click="ZoomOut_Click" FontWeight="Bold" Padding="0,-9,0,0" />
-
-                <Button Name="LayoutChange" Content="L" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="60" Margin="0,0,0,-5" FontWeight="Bold" Padding="0,-9,0,0" Click="LayoutChange_Click"/>
-
-            </map:Map>
+            <Button Name="GoToMap" Content="К карте" FontSize="22" Width="175" Height="75" Margin="148,163,132,369" Click="GoToMap_Click"/>
         </Grid>
     </Grid>
  

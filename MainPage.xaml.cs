@@ -11,93 +11,26 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Controls.Maps;
-using Microsoft.Devices.Sensors;
-using Microsoft.Xna.Framework;
+using System.Windows.Navigation;
 
 namespace MapForCurs
 {
 
     public partial class MainPage : PhoneApplicationPage
     {
-        private Accelerometer myAccel;
-        private GeoCoordinateWatcher myGeoWatcher;
-        private Vector3 currentValues;
         // Конструктор
         public MainPage()
         {
             InitializeComponent();
-            myAccel = new Accelerometer();
-            myAccel.CurrentValueChanged += new EventHandler<SensorReadingEventArgs<AccelerometerReading>>(myAccel_CurrentValueChanged);
-            myAccel.Start();
-            myGeoWatcher = new GeoCoordinateWatcher();
-            myGeoWatcher.MovementThreshold = 100.0f;
-
-           // myGeoWatcher.StatusChanged += new EventHandler<GeoPositionStatusChangedEventArgs>(myGeoWatcher_StatusChanged);
-
-            myGeoWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myGeoWatcher_PositionChanged);
-            myGeoWatcher.TryStart(false, TimeSpan.FromSeconds(60));
+           
         }
 
-        void myAccel_CurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)
+        private  void GoToMap_Click(object sender, RoutedEventArgs e)
         {
-            if (myAccel.IsDataValid)
-            {
-                float deltaZ = (currentValues - e.SensorReading.Acceleration).Z;
-                float Z = e.SensorReading.Acceleration.Z;
-
-                currentValues = e.SensorReading.Acceleration;
-
-                if (Z < 0 && deltaZ > 0)
-                {
-                    //увеличиваем масштаб
-                    Dispatcher.BeginInvoke(() => HandleZoomIn());
-                }
-                if (Z > 0 && deltaZ < 0)
-                {
-                    //уменьшаем масштаб
-                    Dispatcher.BeginInvoke(() => HandleZoomOut());
-                }
-            }
-
+            NavigationService.Navigate(new Uri("/map_page.xaml", UriKind.Relative));
         }
+        
 
-        private void HandleZoomIn()
-        {
-            MyMap.ZoomLevel += 1;
-        }
-
-        private void HandleZoomOut()
-        {
-            MyMap.ZoomLevel -= 1;
-        }
-
-        void myGeoWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
-        {
-            MyMap.Center = e.Position.Location;
-        }
-
-        private void ZoomIn_Click(object sender, RoutedEventArgs e)
-        {
-            MyMap.ZoomLevel += 1;
-        }
-
-        private void ZoomOut_Click(object sender, RoutedEventArgs e)
-        {
-            MyMap.ZoomLevel -= 1;
-        }
-
-        private void LayoutChange_Click(object sender, RoutedEventArgs e)
-        {
-            if (MyMap.Mode is RoadMode)
-            {
-                MyMap.Mode = new AerialMode(true);
-            }
-            else
-            {
-                MyMap.Mode = new RoadMode();
-            }
-
-        }
+       
     }
 }
