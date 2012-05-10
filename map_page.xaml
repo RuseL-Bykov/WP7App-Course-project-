@@ -37,31 +37,12 @@
         </StackPanel>
 
         <!--ContentPanel – поместите здесь дополнительное содержимое-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Margin="12,139,12,0" Grid.RowSpan="2">
+            <TextBlock Name="GeoStatus" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Гколокационный статус..." />
             <map:Map Name="MyMap" CredentialsProvider="ApTr8-LSVQvkI_-ARkF0EBcFQu_4nMG_hKC0AAA4d6W4rOhvfViYeJ3JO69Er2qz">
-                
-                <!--<Button Name="ZoomIn" Content="+" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="60" Margin="-100,0,0,-5" Click="ZoomIn_Click" FontWeight="Bold" Padding="0,-9,0,0"/>
-
-                <Button Name="ZoomOut" Content="-" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="60" Margin="100,0,0,-5" Click="ZoomOut_Click" FontWeight="Bold" Padding="0,-9,0,0" />
-
-                <Button Name="LayoutChange" Content="L" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="60" Margin="0,0,0,-5" FontWeight="Bold" Padding="0,-9,0,0" Click="LayoutChange_Click"/>
-
-                <Button Name="BackToMenu" Content="M" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="60" Margin="-200,0,0,-5" FontWeight="Bold" Padding="0,-9,0,0" Click="BackToMenu_Click" />-->
 
             </map:Map>
         </Grid>
     </Grid>
- 
-    <!--Пример кода, иллюстрирующий использование ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Кнопка 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Кнопка 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Элемент меню 1"/>
-                <shell:ApplicationBarMenuItem Text="Элемент меню 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>
