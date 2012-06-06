@@ -1,0 +1,66 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="MapForCurs.PivotPageForUser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot представляет корневую сетку, где размещается все содержимое страницы-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Элемент управления Pivot-->
+        <controls:Pivot Title="Справка">
+            <!--Первый элемент Pivot-->
+            <controls:PivotItem Header="Навигация">
+                <Grid>
+                    <Image Source="5.png" Height="348" HorizontalAlignment="Left" Margin="33,24,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="233" />
+                    <ListBox Name="MyListBox" Margin="14,385,-14,20" Height="202">
+                        <TextBlock Margin="10 0 0 0">Навигация осуществляется кнопками.</TextBlock>
+                        <TextBlock Margin="20 0 0 0">Используются кнопки приложения и кнопка</TextBlock>
+                        <TextBlock Margin="20 0 0 0">"Назад" на корпусе устройста (для перехода</TextBlock>
+                        <TextBlock Margin="30 0 0 0">на предыдущую страницу).</TextBlock>
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+
+            <!--Второй элемент Pivot-->
+            <controls:PivotItem Header="Карта">
+                <Grid>
+                    <Image Height="305" Source="2.png" HorizontalAlignment="Left" Margin="26,36,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="200" />
+                    <Image Height="305" Source="4.png" HorizontalAlignment="Left" Margin="240,36,0,0" Name="image3" Stretch="Fill" VerticalAlignment="Top" Width="200" />
+                    <ListBox Name="MyListBox2" Margin="14,0,5,20" Height="229" VerticalAlignment="Bottom" Width="437">
+                        <TextBlock Margin="0 0 0 0">Карта имеет 2 режима просмотра.</TextBlock>
+                        <TextBlock Margin="10 0 0 0">Для смены режимов нажмите на кнопку "l"</TextBlock>
+                        <TextBlock Margin="20 0 0 0">Смена масштаба происходит по нажатию </TextBlock>
+                        <TextBlock Margin="30 0 0 0">кнопок "+" и "-".</TextBlock>
+                        <TextBlock Margin="40 0 0 0">Для возврата в меню используйте "m"</TextBlock>
+                        <TextBlock Margin="30 0 0 0">или кнопку "Назад" на корпусе.</TextBlock>
+                        <TextBlock Margin="20 0 0 0">Всплывающая панель вверху карты</TextBlock>
+                        <TextBlock Margin="10 0 0 0">подскажет, доступен ли сервис. </TextBlock>
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+
+            <controls:PivotItem Header="Разработчики">
+                <Grid>
+                    <ListBox Name="MyListBox3" Margin="14,38,6,20" Height="202" Width="436">
+                        <TextBlock Margin="10 0 0 0">Приложение является учебным и</TextBlock>
+                        <TextBlock Margin="20 0 0 0">не притендует на звание шедевра</TextBlock>
+                        <TextBlock Margin="20 0 0 0">программирования.</TextBlock>
+                        <TextBlock Margin="30 0 0 0">Спасибо за понимание.</TextBlock>
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+    
+</phone:PhoneApplicationPage>

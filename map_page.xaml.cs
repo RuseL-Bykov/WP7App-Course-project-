@@ -14,33 +14,27 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Devices.Sensors;
-using Microsoft.Xna.Framework;
 using System.Threading;
 
 namespace MapForCurs
 {
     public partial class map_page : PhoneApplicationPage
     {
-        private Accelerometer myAccel;
-        private GeoCoordinateWatcher myGeoWatcher;
-        private Vector3 currentValues;
-        private Pushpin myPushpin;
+       // private Accelerometer myAccel;
+        private GeoCoordinateWatcher myGeoWatcher; //объявление класса, отвечающего за пределение GPS координат
+        //private Vector3 currentValues;
+        private Pushpin myPushpin;                  //точка для отображеия координат
 
         public map_page() //конструктор
         {
-
             InitializeComponent();
-
-
             myGeoWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
             myGeoWatcher.MovementThreshold = 100.0f;
-
-            myGeoWatcher.StatusChanged += myGeoWatcher_StatusChanged;
-
+            myGeoWatcher.StatusChanged += myGeoWatcher_StatusChanged;          
             myGeoWatcher.PositionChanged += myGeoWatcher_PositionChanged;
-            myAccel = new Accelerometer();
-            myAccel.CurrentValueChanged += myAccel_CurrentValueChanged;
-            myAccel.Start();
+            //myAccel = new Accelerometer();
+            //myAccel.CurrentValueChanged += myAccel_CurrentValueChanged;
+            //myAccel.Start();
             myPushpin = new Pushpin();
            myGeoWatcher.TryStart(false, TimeSpan.FromSeconds(60));
         }
@@ -51,7 +45,7 @@ namespace MapForCurs
             switch (e.Status)
             {
                 case GeoPositionStatus.Disabled:
-                    if (myGeoWatcher.Permission == GeoPositionPermission.Denied)
+                    if (myGeoWatcher.Permission == GeoPositionPermission.Denied)  // если сервис недоступен или вылючен
                     {
                         GeoStatus.Text = "Сервис выключен";
                     }
@@ -60,13 +54,13 @@ namespace MapForCurs
                         GeoStatus.Text = "На этом устройстве сервис недоступен";
                     }
                     break;
-                case GeoPositionStatus.Initializing:
+                case GeoPositionStatus.Initializing:  //инициализация сервиса
                     GeoStatus.Text = "Сервис инициализируется";
                     break;
-                case GeoPositionStatus.NoData:
+                case GeoPositionStatus.NoData:        //невозможно получить данные
                     GeoStatus.Text = "Данные о месположении недоступны";
                     break;
-                case GeoPositionStatus.Ready:
+                case GeoPositionStatus.Ready:       //сервис готов к использованию
                     {
                         GeoStatus.Text = "Данные о местоположении доступны";
                     }
@@ -75,35 +69,35 @@ namespace MapForCurs
 
         }
 
-        void myAccel_CurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)  //работа акселерометра
-        {
-            if (myAccel.IsDataValid)
-            {
-                float deltaZ = (currentValues - e.SensorReading.Acceleration).Z;
-                float Z = e.SensorReading.Acceleration.Z;
+        //void myAccel_CurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)  //работа акселерометра
+        //{
+            //if (myAccel.IsDataValid)
+            //{
+                //float deltaZ = (currentValues - e.SensorReading.Acceleration).Z;
+                //float Z = e.SensorReading.Acceleration.Z;
 
-                currentValues = e.SensorReading.Acceleration;
+                //currentValues = e.SensorReading.Acceleration;
 
-                if (Z < 0 && deltaZ > 0)
-                {
+                //if (Z < 0 && deltaZ > 0)
+               // {
                     //увеличиваем масштаб
-                    Dispatcher.BeginInvoke(() => HandleZoomIn());
-                }
-                if (Z > 0 && deltaZ < 0)
-                {
+                   // Dispatcher.BeginInvoke(() => HandleZoomIn());
+                //}
+                //if (Z > 0 && deltaZ < 0)
+                //{
                     //уменьшаем масштаб
-                    Dispatcher.BeginInvoke(() => HandleZoomOut());
-                }
-            }
+                    //Dispatcher.BeginInvoke(() => HandleZoomOut());
+                //}
+           // }
 
-        }
+        //}
 
-        private void HandleZoomIn() //акселерометр +
+        private void HandleZoomIn() //масштаб при работе с акселерометром +
         {
             MyMap.ZoomLevel += 1;
         }
 
-        private void HandleZoomOut() //акселерометр -
+        private void HandleZoomOut() //при работе с акселерометром масштаб -
         {
             MyMap.ZoomLevel -= 1;
         }
@@ -111,8 +105,9 @@ namespace MapForCurs
         void myGeoWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)  //обработчик смены позиции
         {
             MyMap.Center = e.Position.Location;
+            if (!MyMap.Children.Contains(myPushpin)) 
+                MyMap.Children.Add(myPushpin);
             myPushpin.Location = e.Position.Location;
-            if (!MyMap.Children.Contains(myPushpin)) MyMap.Children.Add(myPushpin);
             myPushpin.Content = "Ваши GPS координаты:\n" + myGeoWatcher.Position.Location.Latitude.ToString() + "\n" + myGeoWatcher.Position.Location.Longitude.ToString();
         }
 

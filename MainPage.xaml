@@ -16,6 +16,7 @@
 
     <!--LayoutRoot представляет корневую сетку, где размещается все содержимое страницы-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -29,20 +30,9 @@
 
         <!--ContentPanel — поместите здесь дополнительное содержимое-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Name="GoToMap" Content="К карте" FontSize="22" Width="175" Height="75" Margin="148,163,132,369" Click="GoToMap_Click"/>
+            <Button Name="GoToMap" Content="К карте" FontSize="22" Height="175" Width="175" Margin="49,358,232,74" Click="GoToMap_Click"/>
+            <Button Name="For_User" Content="Справка" Height="175" Width="175" HorizontalAlignment="Left" Margin="230,356,0,0" VerticalAlignment="Top" Click="For_User_Click" />
         </Grid>
     </Grid>
  
-    <!--Пример кода, иллюстрирующий использование ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Кнопка 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Кнопка 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Элемент меню 1"/>
-                <shell:ApplicationBarMenuItem Text="Элемент меню 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
 </phone:PhoneApplicationPage>

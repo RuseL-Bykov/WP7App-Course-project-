@@ -29,8 +29,12 @@ namespace MapForCurs
         {
             NavigationService.Navigate(new Uri("/map_page.xaml", UriKind.Relative));
         }
-        
 
-       
+        private void For_User_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/PivotPageForUser.xaml", UriKind.Relative));
+        }
+
+               
     }
 }
